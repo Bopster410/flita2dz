@@ -36,4 +36,6 @@ void graphToDot(node_t *graph, char *fileName, graphType type);
 
 node_t *graphFromFile(char *fileName);
 
+void freeGraph(node_t *graph);
+
 #endif

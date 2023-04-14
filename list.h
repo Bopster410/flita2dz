@@ -26,4 +26,7 @@ list* removeListElement(list *pList, void *element);
 // Prints all list elements
 void printList(list *pList);
 
+// Free list
+void freeList(list *pList);
+
 #endif

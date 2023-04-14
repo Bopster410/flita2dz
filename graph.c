@@ -129,3 +129,14 @@ node_t *graphFromFile(char *fileName) {
 
     return tmpNode;
 }
+
+void freeGraph(node_t *graph) {
+    node_t *currentNode = graph;
+    while (currentNode != NULL) {
+        node_t *nextNode = currentNode->nextNodeInGraph;
+        free(currentNode->name);
+        freeList(currentNode->connectedNodes);
+        free(currentNode);
+        currentNode = nextNode;
+    }
+}

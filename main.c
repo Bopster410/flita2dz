@@ -10,7 +10,9 @@ int main(int argc, char *argv[])
 
     printGraph(graph);
 
-    graphToDot(graph, "graph.dot", DIRECTED);
+    graphToDot(graph, "graph.dot", UNDIRECTED);
+
+    freeGraph(graph);
 
     system("dot -Tpng graph.dot -o output.png");
     return 0;

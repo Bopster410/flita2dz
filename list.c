@@ -84,3 +84,13 @@ bool isInList(list *pList, void *element) {
         return isInList(pList->nextElement, element);
     }
 }
+
+void freeList(list *pList) {
+    if (pList != NULL) {
+        if (pList->nextElement != NULL) {
+            freeList(pList->nextElement);
+        }
+        free(pList->value);
+        free(pList);
+    }
+}
