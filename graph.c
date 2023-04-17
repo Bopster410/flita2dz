@@ -69,25 +69,25 @@ node_t *findNode(node_t *currentNode, char *nodeId) {
     }
 }
 
-void graphToDot(node_t *graph, char *fileName, graphType type) {
+void graphToDot(node_t *graph, const char *fileName, graphType type) {
     FILE *graphSrc = fopen(fileName, "w");
     fputs("graph gr {\n", graphSrc);
+    if (type == DIRECTED) {
+        fputs("\tedge [dir=forward]\n", graphSrc);
+    }
     node_t *temp = graph;
     while (temp != NULL) {
-        fprintf(graphSrc,"%s", temp->name);
+        fprintf(graphSrc,"\t%s", temp->name);
         list *currentConnection = temp->connectedNodes;
         if (currentConnection != NULL) {
-            fprintf(graphSrc, " -- ");
+            fputs(" -- ", graphSrc);
         }
         while (currentConnection != NULL) {
             fprintf(graphSrc,"%s", (char*)currentConnection->value);
             if (currentConnection->nextElement != NULL) {
-                fputc(',', graphSrc);
+                fputs(", ", graphSrc);
             }
             currentConnection = currentConnection->nextElement;
-        }
-        if (type == DIRECTED) {
-            fprintf(graphSrc, "[dir=forward]");
         }
         fputc('\n', graphSrc);
         temp = temp->nextNodeInGraph;

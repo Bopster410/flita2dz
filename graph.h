@@ -32,7 +32,7 @@ void printGraph(node_t *firstNode);
 
 node_t *findNode(node_t *currentNode, char *nodeId);
 
-void graphToDot(node_t *graph, char *fileName, graphType type);
+void graphToDot(node_t *graph, const char *fileName, graphType type);
 
 node_t *graphFromFile(char *fileName);
 

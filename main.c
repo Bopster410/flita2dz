@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "graph.h"
 
 int main(int argc, char *argv[])
@@ -10,10 +11,17 @@ int main(int argc, char *argv[])
 
     printGraph(graph);
 
-    graphToDot(graph, "graph.dot", UNDIRECTED);
+    const char *dotFileName = "graph.dot";
+    graphToDot(graph, dotFileName, DIRECTED);
 
     freeGraph(graph);
 
-    system("dot -Tpng graph.dot -o output.png");
+    char *command = malloc(sizeof(char) * 64);
+    sprintf(command, "dot -Tpng %s -o output.png", dotFileName);
+
+    system(command);
+
+    free(command);
+
     return 0;
 }
